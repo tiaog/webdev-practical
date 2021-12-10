@@ -30,9 +30,9 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="part1.1.html">Part 1.1</a></li>
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="part1.1.html">Part 1.1</a></li>
                         <li class="nav-item"><a class="nav-link" href="part1.2.html">Part 1.2</a></li>
-                        <li class="nav-item"><a class="nav-link" href="part1.3.html">Part 1.3</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="part1.3.html">Part 1.3</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,16 +41,32 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-12 text-center">
-                <h1>Part 1.1</h1>
+                <h1>Part 1.3</h1>
                 <p class="lead">Select the question number to check the query.</p>
                 <p>Then click on Execute to see the result.</p>
             </div>
             <div class="col-lg-2 order-1 mb-3 d-flex flex-column gap-2 mx-auto align-items-stretch">
-                <button name="1.1" class="btn btn-secondary btn-block" data-sql="SELECT * from departments LIMIT 10" onClick="reply_click(this)">1.1</button>
-                <button name="1.2" class="btn btn-secondary btn-block" data-sql="SELECT emp_id, first_name, last_name FROM employees LIMIT 100" onClick="reply_click(this)">1.2</button>
-                <button name="1.3" class="btn btn-secondary btn-block" data-sql="SELECT title FROM titles LIMIT 100" onClick="reply_click(this)">1.3</button>
-                <button name="1.4" class="btn btn-secondary btn-block" data-sql="SELECT DISTINCT title FROM titles LIMIT 100" onClick="reply_click(this)">1.4</button>
-                <button name="1.5" class="btn btn-secondary btn-block" data-sql="SELECT first_name FROM employees ORDER BY first_name ASC LIMIT 100" onClick="reply_click(this)">1.5</button>
+                <button name="3.1" class="btn btn-secondary btn-block" data-sql="SELECT COUNT (emp_id) AS myCount
+                from employees
+                WHERE hire_date = '1991-05-01'" onClick="reply_click(this)">3.1</button>
+                <button name="3.2" class="btn btn-secondary btn-block" data-sql="SELECT emp_id, COUNT(*)
+                FROM titles
+                GROUP BY emp_id
+                HAVING COUNT(*) > 2
+                LIMIT 100" onClick="reply_click(this)">3.2</button>
+                <button name="3.3" class="btn btn-secondary btn-block" data-sql="SELECT COUNT (emp_id) AS myCount
+                from salaries
+                WHERE to_date = '9999-01-01' AND salary BETWEEN '90000' AND '90040';
+                " onClick="reply_click(this)">3.3</button>
+                <button name="3.4" class="btn btn-secondary btn-block" data-sql="SELECT e.last_name, e.first_name
+                FROM employees e, salaries s
+                GROUP BY s.salary
+                HAVING s.to_date = '9999-01-01' AND s.salary > 90000
+                ORDER BY e.last_name, e.first_name DESC
+                 LIMIT 100" onClick="reply_click(this)">3.4</button>
+                <button name="3.5" class="btn btn-secondary btn-block" data-sql="SELECT e.first_name, e.last_name, s.salary, s.from_date, s.to_date
+                FROM employees e, salaries s
+                WHERE e.emp_id = 10012" onClick="reply_click(this)">3.5</button>
             
             </div>
             <div class="col-lg-10 order-2">
